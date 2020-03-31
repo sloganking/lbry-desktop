@@ -1,12 +1,10 @@
 // @flow
 import * as MODALS from 'constants/modal_types';
 import * as ICONS from 'constants/icons';
-import React, { Fragment } from 'react';
+import React from 'react';
 import Button from 'component/button';
 import FileDownloadLink from 'component/fileDownloadLink';
 import { buildURI } from 'lbry-redux';
-import * as PAGES from '../../constants/pages';
-import * as CS from '../../constants/claim_search';
 import * as RENDER_MODES from 'constants/file_render_modes';
 
 type Props = {
@@ -44,20 +42,6 @@ function FileActions(props: Props) {
     editUri = buildURI(uriObject);
   }
 
-  let repostLabel = <span>{__('Repost')}</span>;
-  if (claim.meta.reposted > 0) {
-    repostLabel = (
-      <Fragment>
-        {repostLabel}
-        <Button
-          button="alt"
-          label={__('(%count%)', { count: claim.meta.reposted })}
-          navigate={`/$/${PAGES.DISCOVER}?${CS.REPOSTED_URI_KEY}=${encodeURIComponent(uri)}`}
-        />
-      </Fragment>
-    );
-  }
-
   return (
     <div className="media__actions">
       <div className="section__actions section__actions--no-margin">
@@ -70,7 +54,7 @@ function FileActions(props: Props) {
         <Button
           button="alt"
           icon={ICONS.REPOST}
-          label={repostLabel}
+          label={__('Repost %count%', { count: claim.meta.reposted > 0 ? `(${claim.meta.reposted})` : '' })}
           requiresAuth={IS_WEB}
           onClick={() => openModal(MODALS.REPOST, { uri })}
         />
