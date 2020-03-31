@@ -6,6 +6,7 @@ import classnames from 'classnames';
 import ClaimPreview from 'component/claimPreview';
 import Spinner from 'component/spinner';
 import { FormField } from 'component/common/form';
+import Card from 'component/common/card';
 import usePersistedState from 'effects/use-persisted-state';
 
 const SORT_NEW = 'new';
@@ -158,7 +159,7 @@ export default function ClaimList(props: Props) {
         </ul>
       )}
       {urisLength === 0 && !loading && (
-        <div className="card--section main--empty empty">{empty || __('No results')}</div>
+        <Card body={<div className="empty empty--centered">{empty || __('No results')}</div>} />
       )}
     </section>
   );
