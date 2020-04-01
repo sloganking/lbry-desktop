@@ -66,7 +66,7 @@ function PublishFile(props: Props) {
   }, [filePath]);
 
   let currentFile = '';
-  if (filePath) {
+  if (filePath && size) {
     if (typeof filePath === 'string') {
       currentFile = filePath;
     } else {
