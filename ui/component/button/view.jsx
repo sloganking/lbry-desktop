@@ -14,6 +14,7 @@ type Props = {
   href: ?string,
   title: ?string,
   label: ?string,
+  largestLabel: ?string,
   icon: ?string,
   iconRight: ?string,
   disabled: ?boolean,
@@ -47,6 +48,7 @@ const Button = forwardRef<any, {}>((props: Props, ref: any) => {
     href,
     title,
     label,
+    largestLabel,
     icon,
     // This should rarely be used. Regular buttons should just use `icon`
     // `iconRight` is used for the header (home) button with the LBRY icon and external links that are displayed inline
@@ -90,7 +92,16 @@ const Button = forwardRef<any, {}>((props: Props, ref: any) => {
   const content = (
     <span className="button__content">
       {icon && <Icon icon={icon} iconColor={iconColor} size={iconSize} />}
-      {label && <span className="button__label">{label}</span>}
+      {
+        <p style={{ visibility: 'hidden' }}>
+          {largestLabel}
+          {label && (
+            <span className="button__label" style={{ visibility: 'visible' }}>
+              {label}
+            </span>
+          )}
+        </p>
+      }
       {children && children}
       {iconRight && <Icon icon={iconRight} iconColor={iconColor} size={iconSize} />}
     </span>
