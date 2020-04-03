@@ -90,21 +90,37 @@ const Button = forwardRef<any, {}>((props: Props, ref: any) => {
   const combinedRef = useCombinedRefs(ref, innerRef, myref);
 
   const content = (
-    <span className="button__content">
-      {icon && <Icon icon={icon} iconColor={iconColor} size={iconSize} />}
+    <div className="button__content" style={{ border: `1px solid white` }}>
+      {/* style={{ border: `1px solid white` }} */}
+      <div style={{ border: `1px solid green` }}>
+        {icon && <Icon icon={icon} iconColor={iconColor} size={iconSize} />}
+      </div>
       {
-        <p style={{ visibility: 'hidden' }}>
-          {largestLabel}
-          {label && (
-            <span className="button__label" style={{ visibility: 'visible' }}>
-              {label}
-            </span>
-          )}
-        </p>
+        <div style={{ border: `1px solid blue` }}>
+          <span style={{ visibility: 'hidden' }}>
+            {largestLabel || label}
+            {label && (
+              //   <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, top: 0, margin: 'auto' }}>
+              <div
+                style={{
+                  position: 'relative',
+                  left: '50%',
+                  right: '50%',
+                  transform: `translate(-50%, -50%)`,
+                  border: `1px solid red`,
+                }}
+              >
+                <span className="button__label" style={{ visibility: 'visible' }}>
+                  {label}
+                </span>
+              </div>
+            )}
+          </span>
+        </div>
       }
       {children && children}
       {iconRight && <Icon icon={iconRight} iconColor={iconColor} size={iconSize} />}
-    </span>
+    </div>
   );
 
   if (href) {
