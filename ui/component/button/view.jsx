@@ -90,18 +90,17 @@ const Button = forwardRef<any, {}>((props: Props, ref: any) => {
   const combinedRef = useCombinedRefs(ref, innerRef, myref);
 
   const content = (
-    <span className="button__content" style={{ border: `1px solid green` }}>
+    <span className="button__content">
       {icon && <Icon icon={icon} iconColor={iconColor} size={iconSize} />}
 
       {label && (
-        <div style={{ position: 'relative', border: `1px solid red` }}>
+        <div style={{ position: 'relative' }}>
           <div
             style={{
               position: 'relative',
               left: '50%',
               top: '50%',
               transform: `translate(-50%, 0%)`,
-              border: `1px solid white`,
             }}
           >
             <span style={{ visibility: 'hidden' }}>
@@ -112,8 +111,6 @@ const Button = forwardRef<any, {}>((props: Props, ref: any) => {
                   left: '50%',
                   top: '50%',
                   transform: `translate(-50%, -50%)`,
-                  visibility: 'visible',
-                  border: `1px solid blue`,
                 }}
               >
                 <span className="button__label" style={{ visibility: 'visible' }}>
